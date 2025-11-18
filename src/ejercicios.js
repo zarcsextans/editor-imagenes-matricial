@@ -1,9 +1,9 @@
 // ============================================
 // EDITOR DE IMÁGENES CON ÁLGEBRA MATRICIAL
 // ============================================
-// Nombre del estudiante: _________________
-// Fecha: ______________si 2.0
-// Grupo: _________________
+// Nombre del estudiante: Scarlet Angelina Ruelas Cardeña 
+// Fecha: 18 de nomviembre de 2025
+// Grupo: B
 
 const { PNG } = require('pngjs');
 const fs = require('fs');
