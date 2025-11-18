@@ -2,7 +2,7 @@
 // EDITOR DE IMÁGENES CON ÁLGEBRA MATRICIAL
 // ============================================
 // Nombre del estudiante: _________________
-// Fecha: _________________
+// Fecha: ______________si 2.0
 // Grupo: _________________
 
 const { PNG } = require('pngjs');
