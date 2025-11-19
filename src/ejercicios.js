@@ -267,24 +267,7 @@ function voltearVertical(matriz) {
 /**
  * Ejercicio 3.3: Rotar 90 grados en sentido horario
  */
-function rotar90Grados(matriz) {
-  const dims = obtenerDimensiones(matriz);
-  const filas = dims.filas;
-  const columnas = dims.columnas;
-  if (filas === 0 || columnas === 0) return [];
 
-  // Nuevo ancho = filas, nuevo alto = columnas
-  const resultado = Array.from({ length: columnas }, () => []);
-  for (let y = 0; y < filas; y++) {
-    for (let x = 0; x < columnas; x++) {
-      // pixel original en (y,x) va a (x, filas-1-y)
-      const px = matriz[y][x];
-      // aseguramos la fila destino
-      resultado[x][filas - 1 - y] = { r: px.r, g: px.g, b: px.b, a: px.a !== undefined ? px.a : 255 };
-    }
-  }
-  return resultado;
-}
 
 // ============================================
 // SECCIÓN 4: FILTROS AVANZADOS (25 puntos)
