@@ -191,7 +191,24 @@ function ajustarBrillo(matriz, factor) {
  * Ejercicio 2.2: Invertir colores
  * @param {Array<Array<Object>>} matriz//
  */
-
+function invertirColores(matriz) {
+  const dims = obtenerDimensiones(matriz);
+  const resultado = [];
+  for (let y = 0; y < dims.filas; y++) {
+    const fila = [];
+    for (let x = 0; x < dims.columnas; x++) {
+      const px = matriz[y][x];
+      fila.push({
+        r: clampColor(255 - px.r),
+        g: clampColor(255 - px.g),
+        b: clampColor(255 - px.b),
+        a: px.a !== undefined ? clampColor(px.a) : 255
+      });
+    }
+    resultado.push(fila);
+  }
+  return resultado;
+}
 
 /**
  * Ejercicio 2.3: Convertir a escala de grises (promedio ponderado)
