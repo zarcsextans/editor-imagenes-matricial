@@ -147,7 +147,7 @@ function obtenerCanal(matriz, canal) {
 }
 
 /**
- * Ejercicio 1.4: Obtener dimensiones de una imagen PNG // ancho, alto, totalPixeles
+ * Ejercicio 1.4: Obtener dimensiones de una imagen PNG //
  * @param {string} rutaImagen
  * @returns {Object} { ancho, alto, totalPixeles }
  */
@@ -189,7 +189,7 @@ function ajustarBrillo(matriz, factor) {
 
 /**
  * Ejercicio 2.2: Invertir colores
- * @param {Array<Array<Object>>} matriz//
+ * @param {Array<Array<Object>>} matriz
  */
 function invertirColores(matriz) {
   const dims = obtenerDimensiones(matriz);
@@ -267,7 +267,24 @@ function voltearVertical(matriz) {
 /**
  * Ejercicio 3.3: Rotar 90 grados en sentido horario
  */
+function rotar90Grados(matriz) {
+  const dims = obtenerDimensiones(matriz);
+  const filas = dims.filas;
+  const columnas = dims.columnas;
+  if (filas === 0 || columnas === 0) return [];
 
+  // Nuevo ancho = filas, nuevo alto = columnas
+  const resultado = Array.from({ length: columnas }, () => []);
+  for (let y = 0; y < filas; y++) {
+    for (let x = 0; x < columnas; x++) {
+      // pixel original en (y,x) va a (x, filas-1-y)
+      const px = matriz[y][x];
+      // aseguramos la fila destino
+      resultado[x][filas - 1 - y] = { r: px.r, g: px.g, b: px.b, a: px.a !== undefined ? px.a : 255 };
+    }
+  }
+  return resultado;
+}
 
 // ============================================
 // SECCIÓN 4: FILTROS AVANZADOS (25 puntos)
@@ -330,29 +347,6 @@ function aplicarSepia(matriz) {
  * Ejercicio 4.3: Detectar bordes (simplificado)
  * Algoritmo: convertir a grises y comparar con vecino derecho e inferior
  */
-function detectarBordes(matriz, umbral = 50) {
-  const dims = obtenerDimensiones(matriz);
-  if (dims.filas === 0 || dims.columnas === 0) return [];
-  const gris = convertirEscalaGrises(matriz);
-  const resultado = [];
-  for (let y = 0; y < dims.filas; y++) {
-    const fila = [];
-    for (let x = 0; x < dims.columnas; x++) {
-      const v = gris[y][x].r;
-      // valores de vecinos (si no existen, usar el mismo)
-      const derecho = x + 1 < dims.columnas ? gris[y][x + 1].r : v;
-      const inferior = y + 1 < dims.filas ? gris[y + 1][x].r : v;
-      const dif = Math.max(Math.abs(v - derecho), Math.abs(v - inferior));
-      if (dif > umbral) {
-        fila.push({ r: 255, g: 255, b: 255, a: 255 });
-      } else {
-        fila.push({ r: 0, g: 0, b: 0, a: 255 });
-      }
-    }
-    resultado.push(fila);
-  }
-  return resultado;
-}
 
 // ============================================
 // NO MODIFICAR - Exportación de funciones
