@@ -340,7 +340,7 @@ function aplicarSepia(matriz) {
     }
     resultado.push(fila);
   }
-  return resultado;
+  return resultado;// return resultado;
 }
 
 /**
