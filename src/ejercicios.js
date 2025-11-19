@@ -214,6 +214,20 @@ function invertirColores(matriz) {
  * Ejercicio 2.3: Convertir a escala de grises (promedio ponderado)
  * @param {Array<Array<Object>>} matriz
  */
+function convertirEscalaGrises(matriz) {
+  const dims = obtenerDimensiones(matriz);
+  const resultado = [];
+  for (let y = 0; y < dims.filas; y++) {
+    const fila = [];
+    for (let x = 0; x < dims.columnas; x++) {
+      const px = matriz[y][x];
+      const gris = clampColor(0.299 * px.r + 0.587 * px.g + 0.114 * px.b);
+      fila.push({ r: gris, g: gris, b: gris, a: px.a !== undefined ? clampColor(px.a) : 255 });
+    }
+    resultado.push(fila);
+  }
+  return resultado;
+}
 
 // ============================================
 // SECCIÓN 3: TRANSFORMACIONES GEOMÉTRICAS (30 puntos)
