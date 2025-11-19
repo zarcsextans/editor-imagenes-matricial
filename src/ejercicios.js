@@ -176,11 +176,12 @@ function ajustarBrillo(matriz, factor) {
     for (let x = 0; x < dims.columnas; x++) {
       const px = matriz[y][x];
       fila.push({
-        r: clampColor(px.r * factor),
-        g: clampColor(px.g * factor),
-        b: clampColor(px.b * factor),
+        r: clampColor(px.r + factor),
+        g: clampColor(px.g + factor),
+        b: clampColor(px.b + factor),
         a: px.a !== undefined ? clampColor(px.a) : 255
       });
+      
     }
     resultado.push(fila);
   }
