@@ -34,62 +34,67 @@ const {
 // Conversión entre imágenes y matrices
 // ============================================
 
+// ============================================
+// SECCIÓN 1: FUNDAMENTOS (20 puntos)
+// Conversión entre imágenes y matrices
+// ============================================
+
 /**
- * Ejercicio 1.1: Cargar imagen PNG y convertir a matriz de píxeles (5 puntos)
+ * Ejercicio 1.1: Cargar imagen PNG y convertirla a matriz de píxeles (5 puntos)
  * 
- * Una imagen es una matriz donde cada elemento es un pixel con valores RGBA.
- * Debes leer el archivo PNG y crear una matriz donde:
- * - Cada fila representa una fila de píxeles de la imagen
- * - Cada elemento es un objeto: {r: 0-255, g: 0-255, b: 0-255, a: 0-255}
+ * La imagen se interpreta como una matriz donde:
+ * - Cada fila corresponde a una fila de píxeles
+ * - Cada elemento es un objeto con {r, g, b, a}
+ *
+ * Formato del buffer PNG:
+ * [R,G,B,A, R,G,B,A, ...]
+ * 
+ * Índice para acceder al pixel (x,y):
+ * idx = (width * y + x) * 4
  * 
  * @param {string} rutaImagen - Ruta del archivo PNG
- * @returns {Array<Array<Object>>} - Matriz de píxeles
- * 
- * Pistas:
- * - Usa PNG.sync.read() para leer la imagen
- * - png.width y png.height te dan las dimensiones
- * - png.data es un Buffer con formato [R,G,B,A, R,G,B,A, ...]
- * - El índice en el buffer para el pixel (x,y) es: idx = (width * y + x) * 4
- * 
- * @example
- * const matriz = imagenAMatriz('imagenes/entrada/test_pequeña.png');
- * // matriz[0][0] = {r: 0, g: 0, b: 128, a: 255}
+ * @returns {Array<Array<Object>>} Matriz de píxeles RGBA
  */
+
+const fs = require("fs");
+const { PNG } = require("pngjs");
+
 function imagenAMatriz(rutaImagen) {
-  // TODO: Implementar la conversión de PNG a matriz
-  
-  // 1. Leer el archivo PNG
-  // const buffer = fs.readFileSync(rutaImagen);
-  // const png = PNG.sync.read(buffer);
-  
-  // 2. Crear la matriz vacía
-  // const matriz = [];
-  
-  // 3. Recorrer cada fila (y) y cada columna (x)
-  // for (let y = 0; y < png.height; y++) {
-  //   const fila = [];
-  //   for (let x = 0; x < png.width; x++) {
-  //     // 4. Calcular el índice en el buffer
-  //     const idx = (png.width * y + x) << 2; // equivalente a * 4
-  //     
-  //     // 5. Extraer los valores RGBA
-  //     const pixel = {
-  //       r: png.data[idx],
-  //       g: png.data[idx + 1],
-  //       b: png.data[idx + 2],
-  //       a: png.data[idx + 3]
-  //     };
-  //     
-  //     fila.push(pixel);
-  //   }
-  //   matriz.push(fila);
-  // }
-  
-  // 6. Retornar la matriz
-  // return matriz;
-  
-  return []; // REEMPLAZAR CON TU CÓDIGO
+  // Leer archivo PNG
+  const buffer = fs.readFileSync(rutaImagen);
+  const png = PNG.sync.read(buffer);
+
+  // Matriz final
+  const matriz = [];
+
+  // Recorrer cada píxel y construir la matriz
+  for (let y = 0; y < png.height; y++) {
+    const fila = [];
+
+    for (let x = 0; x < png.width; x++) {
+      const idx = (png.width * y + x) * 4;
+
+      const pixel = {
+        r: png.data[idx],
+        g: png.data[idx + 1],
+        b: png.data[idx + 2],
+        a: png.data[idx + 3]
+      };
+
+      fila.push(pixel);
+    }
+
+    matriz.push(fila);
+  }
+
+  return matriz;
 }
+
+// Ejemplo de uso:
+// const matriz = imagenAMatriz("imagenes/entrada/test_pequeña.png");
+// console.log(matriz[0][0]); 
+// → { r: 0, g: 0, b: 128, a: 255 }
+
 
 /**
  * Ejercicio 1.2: Convertir matriz de píxeles a imagen PNG (5 puntos)
