@@ -147,7 +147,7 @@ function obtenerCanal(matriz, canal) {
 }
 
 /**
- * Ejercicio 1.4: Obtener dimensiones de una imagen PNG
+ * Ejercicio 1.4: Obtener dimensiones de una imagen PNG // ancho, alto, totalPixeles
  * @param {string} rutaImagen
  * @returns {Object} { ancho, alto, totalPixeles }
  */
