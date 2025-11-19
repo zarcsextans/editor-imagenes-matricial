@@ -254,6 +254,15 @@ function voltearHorizontal(matriz) {
 /**
  * Ejercicio 3.2: Voltear vertical
  */
+function voltearVertical(matriz) {
+  const dims = obtenerDimensiones(matriz);
+  const resultado = [];
+  for (let y = dims.filas - 1; y >= 0; y--) {
+    const fila = matriz[y].map(px => ({ r: px.r, g: px.g, b: px.b, a: px.a !== undefined ? px.a : 255 }));
+    resultado.push(fila);
+  }
+  return resultado;
+}
 
 /**
  * Ejercicio 3.3: Rotar 90 grados en sentido horario
