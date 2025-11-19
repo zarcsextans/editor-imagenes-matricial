@@ -293,6 +293,30 @@ function rotar90Grados(matriz) {
 /**
  * Ejercicio 4.1: Mezclar dos imágenes (combinación lineal)
  */
+function mezclarImagenes(matriz1, matriz2, factor) {
+  if (factor < 0 || factor > 1) throw new Error('El factor debe estar en [0,1]');
+  const d1 = obtenerDimensiones(matriz1);
+  const d2 = obtenerDimensiones(matriz2);
+  if (d1.filas !== d2.filas || d1.columnas !== d2.columnas) {
+    throw new Error('Las imágenes deben tener el mismo tamaño');
+  }
+  const resultado = [];
+  for (let y = 0; y < d1.filas; y++) {
+    const fila = [];
+    for (let x = 0; x < d1.columnas; x++) {
+      const a = matriz1[y][x];
+      const b = matriz2[y][x];
+      fila.push({
+        r: clampColor(a.r * (1 - factor) + b.r * factor),
+        g: clampColor(a.g * (1 - factor) + b.g * factor),
+        b: clampColor(a.b * (1 - factor) + b.b * factor),
+        a: clampColor((a.a !== undefined ? a.a : 255) * (1 - factor) + (b.a !== undefined ? b.a : 255) * factor)
+      });
+    }
+    resultado.push(fila);
+  }
+  return resultado;
+}
 
 /**
  * Ejercicio 4.2: Filtro Sepia
