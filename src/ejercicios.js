@@ -189,7 +189,7 @@ function ajustarBrillo(matriz, factor) {
 
 /**
  * Ejercicio 2.2: Invertir colores
- * @param {Array<Array<Object>>} matriz
+ * @param {Array<Array<Object>>} matriz// matriz
  */
 function invertirColores(matriz) {
   const dims = obtenerDimensiones(matriz);
