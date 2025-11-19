@@ -90,7 +90,7 @@ function imagenAMatriz(rutaImagen) {
 /**
  * Ejercicio 1.2: Convertir matriz de píxeles a imagen PNG
  * @param {Array<Array<Object>>} matriz - Matriz de píxeles {r,g,b,a}
- * @param {string} rutaSalida - Ruta donde guardar el PNG
+ * @param {string} rutaSalida - Ruta donde guardar el PNG //rutaSalida
  */
 function matrizAImagen(matriz, rutaSalida) {
   if (!Array.isArray(matriz) || matriz.length === 0) {
@@ -114,7 +114,7 @@ function matrizAImagen(matriz, rutaSalida) {
     }
   }
 
-  // Asegurar directorio
+  // Asegurar directorio de salida
   const dir = path.dirname(rutaSalida);
   asegurarDirectorioLocal(dir);
 
