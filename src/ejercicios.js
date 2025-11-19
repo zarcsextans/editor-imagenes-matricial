@@ -347,6 +347,29 @@ function aplicarSepia(matriz) {
  * Ejercicio 4.3: Detectar bordes (simplificado)
  * Algoritmo: convertir a grises y comparar con vecino derecho e inferior
  */
+function detectarBordes(matriz, umbral = 50) {
+  const dims = obtenerDimensiones(matriz);
+  if (dims.filas === 0 || dims.columnas === 0) return [];
+  const gris = convertirEscalaGrises(matriz);
+  const resultado = [];
+  for (let y = 0; y < dims.filas; y++) {
+    const fila = [];
+    for (let x = 0; x < dims.columnas; x++) {
+      const v = gris[y][x].r;
+      // valores de vecinos (si no existen, usar el mismo)
+      const derecho = x + 1 < dims.columnas ? gris[y][x + 1].r : v;
+      const inferior = y + 1 < dims.filas ? gris[y + 1][x].r : v;
+      const dif = Math.max(Math.abs(v - derecho), Math.abs(v - inferior));
+      if (dif > umbral) {
+        fila.push({ r: 255, g: 255, b: 255, a: 255 });
+      } else {
+        fila.push({ r: 0, g: 0, b: 0, a: 255 });
+      }
+    }
+    resultado.push(fila);
+  }
+  return resultado;
+}
 
 // ============================================
 // NO MODIFICAR - Exportación de funciones
