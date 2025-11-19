@@ -123,7 +123,7 @@ function matrizAImagen(matriz, rutaSalida) {
 }
 
 /**
- * Ejercicio 1.3: Obtener un canal específico de color
+ * Ejercicio 1.3: Obtener un canal específico de color // 'r', 'g', 'b'
  * @param {Array<Array<Object>>} matriz - Matriz de píxeles
  * @param {string} canal - 'r', 'g', o 'b'
  * @returns {Array<Array<Object>>}
