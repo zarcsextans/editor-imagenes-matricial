@@ -3,7 +3,7 @@
 // ============================================
 // Nombre del estudiante: Scarlet Angelina Ruelas Cardeña 
 // Fecha: 18 de noviembre de 2025
-// Grupo: B
+// Grupo: 1B
 
 const { PNG } = require('pngjs');
 const fs = require('fs');
